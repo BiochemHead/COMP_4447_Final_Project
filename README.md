@@ -1,2 +1,2 @@
-# COMP_4447_Final_Project
-Final Project Repository
+# COMP 4447 Final Project
+This repository contains the notebook, files, and code for the finall project
