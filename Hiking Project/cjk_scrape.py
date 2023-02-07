@@ -25,7 +25,7 @@ for row in rows:
 
 # Loop through rest of trails that would would normally be found by clicking open
 # "Show More" but use idx number found from xhr info found from network section from
-# Inspect Elements and incrementing to 408
+# Inspect Elements and incrementing to 408, /ajax* does appear on robot.txt :(
 
 for i in range(408):
     response = requests.get('https://www.hikingproject.com/ajax/area/8007418/trails?idx='+str(i+1))
@@ -60,8 +60,11 @@ for link in urls:
     test_list.append([name.text, difficult, site_rating, dog_feature, [stat.text for stat in stats], elev_up.text, elev_down.text, trail_length.text, trail_type.text, elev_high.text, elev_low.text, avg_grade.text, max_grade.text])
     print(link + ' complete')
 
+#close browser
+driver.quit()
+
 # CONVERTS TO DATAFRAME
 
 test_df = pd.DataFrame(data=test_list, columns=['Name','Site Diff Rating', 'Rating', 'Dogs and Features', 'Stats Breakdown', 'Elev_Up', 'Elev_Down', 'Trail Length', 'Trail Type', 'Highest Elevation', 'Lowest Elevation', 'Average Grade', 'Max Grade'])
 test_df2 = test_df.replace('\n', ' ', regex=True)
-display(HTML(test_df2.to_html()))            
+display(HTML(test_df2.to_html()))
