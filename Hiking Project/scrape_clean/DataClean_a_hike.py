@@ -31,4 +31,24 @@ if not np.issubdtype(df['User Rate Number'].dtype, np.dtype(str).type):
     df['User Rate Number'] = df['User Rate Number'].astype(str)
 df['User Rate Number'] = df['User Rate Number'].str.extract('\((\d+)\)')[0]
 
+# Difficulty mapping
+difficulty_map = {
+    'EASY': 1,
+    'EASY/INTERMEDIATE': 2,
+    'INTERMEDIATE': 3,
+    'INTERMEDIATE/DIFFICULT': 4,
+    'DIFFICULT': 5
+}
+
+# Create the Difficulty Number column
+df['Difficulty Number'] = df['Trail Difficulty'].map(difficulty_map)
+
+# Specify the desired order of columns
+columns = df.columns.tolist()
+columns.remove('Difficulty Number')
+columns = columns[:3] + ['Difficulty Number'] + columns[3:]
+df = df[columns]
+
 df.sample(5)
+
+
