@@ -12,3 +12,5 @@ df = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
 
 df.info()
 df.describe()
+df['Dogs'].value_counts()
+df['Trail Difficulty'].value_counts()
