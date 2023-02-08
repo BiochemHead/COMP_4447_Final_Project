@@ -58,7 +58,7 @@ columns.remove('Dogs')
 columns = columns[:3] + ['Difficulty Number'] + columns[3:12] + ['Dogs'] + columns[12:]
 df = df[columns]
 
-df.sample(5)
+# df.sample(5)
 
 # save cleaned data frame as pkl file
 df.to_pickle("hike_project_cln_data.pkl")
