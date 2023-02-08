@@ -16,7 +16,7 @@ driver.get('https://www.hikingproject.com/directory/8007418/colorado')
 # locate the "Load More" button
 load_more_button = driver.find_element(By.XPATH, "//button[@id='load-more-trails']")
 
-# iterate 3 times and click the " Show More" button
+# iterate 5 times and click the " Show More" button
 for i in range(5):
     if load_more_button.is_displayed():
         load_more_button.click()
