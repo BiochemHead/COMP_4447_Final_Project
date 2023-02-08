@@ -69,14 +69,14 @@ for i in range (len(links)):
         
         max_grade = driver.find_element(By.CSS_SELECTOR, '#trail-stats-bar > div.stat-block.ml-1.mt-1 > h3:nth-child(3)')
  
-        
         hike_list.append([hike_name.text, trail_length.text, hike_difficulty, hike_rating, no_userRate, trail_type.text, elev_up.text, elev_down.text, elev_high.text, elev_low.text, avg_grade.text, max_grade.text, dog_feature, [stat.text for stat in stats]])
 
-        
         df = pd.DataFrame(data=hike_list, columns=['Trail Name', 'Trail Length','Trail Difficulty', 'Trail Rating', 'User Rate Number', 'Trail Type', 'Elev_Up', 'Elev_Down', 'Highest Elevation', 'Lowest Elevation', 'Average Grade', 'Max Grade', 'Dogs and Features', 'Stats Info.'])
         hike_df = df.replace('\n', ' ', regex=True)
         
 # close the web browser
 driver.quit()
 
-display(HTML(hike_df.to_html()))
+# save as a pkl file
+hike_df.to_pickle("hike_project_data.pkl")
+#display(HTML(hike_df.to_html()))
