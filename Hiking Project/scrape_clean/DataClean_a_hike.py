@@ -51,4 +51,5 @@ df = df[columns]
 
 df.sample(5)
 
-
+# save cleaned data frame as pkl file
+df.to_pickle("hike_project_cln_data.pkl")
