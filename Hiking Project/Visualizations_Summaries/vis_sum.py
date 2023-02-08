@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib as plt
 
 # Read the cleaned hiking dataset pickle file  
-df = pd.read_pickle("hike_project_cln_data.pkl")
+df = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
 
 df.info()
-df.details()
+df.describe()
