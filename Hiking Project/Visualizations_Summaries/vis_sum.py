@@ -5,18 +5,31 @@ Author(s): Chris Kirchberg
 """
 import pandas as pd
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sb
 from sklearn import linear_model
 import statsmodels.api as sm
 
 # Read the cleaned hiking dataset pickle file  
 df = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
-
+for i in range(len(df)):
+    if pd.isna(df.loc[i,'Features']) is False:
+        df['Features'][i]=df['Features'][i].split(sep ='·')
+        
 df.info()
 display(df.describe())
-display(df['Dogs'].value_counts(dropna=False).to_frame())
-display(df['Trail Difficulty'].value_counts(dropna=False).to_frame())
+
+df['Dogs'].value_counts(dropna=False).plot.bar()
+plt.show()
+
+df['Trail Difficulty'].value_counts(dropna=False).plot.bar()
+plt.show()
+
+df['Features'].value_counts(dropna=False).plot.bar()
+plt.show()
+
 df.hist()
+
 df.plot.scatter(x='Max Grade',y='Difficulty Number')
+
 df.plot.scatter(x='Difficulty Number',y='Trail Rating')
