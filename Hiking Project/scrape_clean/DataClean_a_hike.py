@@ -73,6 +73,8 @@ df['Highest Elevation'] = df['Highest Elevation'].str.replace("'", "").str.repla
 df['Lowest Elevation'] = df['Lowest Elevation'].str.replace("'", "").str.replace(",", "").astype(float)
 df['Average Grade'] = df['Average Grade'].str.strip('%').astype(float) / 100
 df['Max Grade'] = df['Max Grade'].str.strip('%').astype(float) / 100
+df['User Review'] = df['User Review'].astype("Int64")
+
 
 # Showing after correction Datatypes 
 df.dtypes
