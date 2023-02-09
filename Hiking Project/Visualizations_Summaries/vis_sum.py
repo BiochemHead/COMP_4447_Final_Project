@@ -20,9 +20,6 @@ df['Difficulty Number']=df['Difficulty Number'].astype('category')
 df.info()
 display(df.describe())
 
-df.hist()
-plt.show()
-
 df['Dogs'].value_counts(dropna=False).plot.bar()
 plt.show()
 
