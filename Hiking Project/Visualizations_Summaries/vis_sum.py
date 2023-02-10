@@ -13,9 +13,8 @@ from IPython.core.display import display
 # Read the cleaned hiking dataset pickle file
 df_o = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
 df = df_o.copy(deep=True)
-for i in range(len(df)):
-    if pd.isna(df.loc[i, 'Features']) is False:
-        df['Features'][i] = df['Features'][i].split(sep='·')
+
+df.replace({'Features':' · '},',',regex=True,inplace=True)
 
 df['Difficulty Number'] = df['Difficulty Number'].astype('category')
 
