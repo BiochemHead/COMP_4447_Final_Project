@@ -22,10 +22,9 @@ df['Difficulty Number'] = df['Difficulty Number'].astype('category')
 df.info()
 display(df.describe())
 
-plt.rcParams["figure.figsize"] = [5.5, 8]
+plt.rcParams["figure.figsize"] = [9, 6]
 plt.rcParams["figure.autolayout"] = True
 ax = plt.GridSpec(2, 1)
-ax.update(wspace=0.5, hspace=0.2)
 
 ax1 = plt.subplot(ax[0, 0])
 sns.countplot(y=df['Dogs'])
@@ -36,13 +35,19 @@ sns.countplot(y=df['Trail Difficulty'],
                      'INTERMEDIATE/DIFFICULT' ,'DIFFICULT'])
 plt.show()
 
+plt.rcParams["figure.figsize"] = [9, 5]
 my_colors = list(islice(cycle(['b', 'r', 'g', 'y', 'c','m']), None, len(df)))
 df['Features'].value_counts(dropna=True).plot.barh(color=my_colors)
+plt.xlabel('Count')
+plt.ylabel('Features')
+plt.title('Count of Features')
 plt.show()
 
+plt.rcParams["figure.figsize"] = [9, 6]
 df.hist()
 plt.show()
 
+plt.rcParams["figure.figsize"] = [9, 6]
 plt.subplot(221)
 sns.boxplot(x='Difficulty Number', y='Trail Rating', data=df)
 
