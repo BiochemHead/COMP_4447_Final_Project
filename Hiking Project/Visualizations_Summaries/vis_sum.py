@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from itertools import cycle, islice
 from IPython.core.display import display
 
 # Read the cleaned hiking dataset pickle file
@@ -21,13 +22,22 @@ df['Difficulty Number'] = df['Difficulty Number'].astype('category')
 df.info()
 display(df.describe())
 
-df['Dogs'].value_counts(dropna=False).plot.bar()
+plt.rcParams["figure.figsize"] = [5.5, 8]
+plt.rcParams["figure.autolayout"] = True
+ax = plt.GridSpec(2, 1)
+ax.update(wspace=0.5, hspace=0.2)
+
+ax1 = plt.subplot(ax[0, 0])
+sns.countplot(y=df['Dogs'])
+
+ax2 = plt.subplot(ax[1, 0])
+sns.countplot(y=df['Trail Difficulty'],
+              order=['EASY', 'EASY/INTERMEDIATE','INTERMEDIATE',
+                     'INTERMEDIATE/DIFFICULT' ,'DIFFICULT'])
 plt.show()
 
-df['Trail Difficulty'].value_counts(dropna=False).sort_index().plot.bar()
-plt.show()
-
-df['Features'].value_counts(dropna=False).plot.bar()
+my_colors = list(islice(cycle(['b', 'r', 'g', 'y', 'c','m']), None, len(df)))
+df['Features'].value_counts(dropna=True).plot.barh(color=my_colors)
 plt.show()
 
 df.hist()
