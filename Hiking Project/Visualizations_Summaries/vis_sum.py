@@ -8,13 +8,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from itertools import cycle, islice
-from IPython.core.display import display
+from collections import defaultdict
+import math
 
 # Read the cleaned hiking dataset pickle file
 df_o = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
-df=df_o.copy(deep=True)
-df.replace({'Features':' · '},',',regex=True,inplace=True)
-df['Difficulty Number']=df['Difficulty Number'].astype('category')
+df = df_o.copy(deep=True)
+df['Difficulty Number'] = df['Difficulty Number'].astype('category')
+df['Split_feats']=df.Features.str.split(' · ')
+df_f=pd.get_dummies(df['Split_feats'].apply(pd.Series).stack()).sum(level=0)
 
 # Get basic information about the data
 df.info()
@@ -31,15 +33,15 @@ sns.countplot(y=df['Dogs'])
 
 ax2 = plt.subplot(ax[1, 0])
 sns.countplot(y=df['Trail Difficulty'],
-              order=['EASY', 'EASY/INTERMEDIATE','INTERMEDIATE',
-                     'INTERMEDIATE/DIFFICULT' ,'DIFFICULT'])
+              order=['EASY', 'EASY/INTERMEDIATE', 'INTERMEDIATE',
+                     'INTERMEDIATE/DIFFICULT', 'DIFFICULT'])
 plt.show()
 
 # Plot count data of Features on Bar Graphs
 plt.rcParams["figure.figsize"] = [9, 9]
 ax.update(wspace=0.25, hspace=0.25)
-my_colors = list(islice(cycle(['b', 'r', 'g', 'y', 'c','m']), None, len(df)))
-df['Features'].value_counts(dropna=True).plot.barh(color=my_colors)
+my_colors = list(islice(cycle(['b', 'r', 'g', 'y', 'c', 'm']), None, len(df)))
+df['Feature1'].value_counts(dropna=True).plot.barh(color=my_colors)
 plt.xlabel('Count')
 plt.ylabel('Features')
 plt.title('Count of Features')
@@ -55,13 +57,13 @@ plt.rcParams["figure.figsize"] = [9, 9]
 ax = plt.GridSpec(2, 2)
 
 ax1 = plt.subplot(ax[0, 0])
-sns.boxplot(x='Difficulty Number',y='Trail Rating',data=df)
+sns.boxplot(x='Difficulty Number', y='Trail Rating', data=df)
 
 # Plot regression lines and scatter plots for Max Grade vs.
 # Difficulty Number and Trail Rating
 ax2 = plt.subplot(ax[1, 1])
-sns.regplot(x='Max Grade',y='Difficulty Number',data=df,dropna = True)
+sns.regplot(x='Max Grade', y='Difficulty Number', data=df, dropna=True)
 
 ax3 = plt.subplot(ax[1, 0])
-sns.regplot(x='Max Grade',y='Trail Rating',data=df,dropna = True)
+sns.regplot(x='Max Grade', y='Trail Rating', data=df, dropna=True)
 plt.show()
