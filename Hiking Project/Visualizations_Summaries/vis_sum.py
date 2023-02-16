@@ -26,7 +26,6 @@ df.describe()
 #Plot count data of Dogs and Trail Difficulty on Bar Graphs
 plt.rcParams["figure.figsize"] = [9, 5]
 fig, axs = plt.subplots(nrows=2,sharex=True)
-ax.update(wspace=0.25, hspace=0.25)
 sns.countplot(y=df['Dogs'],ax=axs[0])
 
 sns.countplot(y=df['Trail Difficulty'],
