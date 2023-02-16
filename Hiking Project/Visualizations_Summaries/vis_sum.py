@@ -8,54 +8,52 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from itertools import cycle, islice
-from collections import defaultdict
-import math
 
 # Read the cleaned hiking dataset pickle file
 df_o = pd.read_pickle("../scrape_clean/hike_project_cln_data.pkl")
 df = df_o.copy(deep=True)
 df['Difficulty Number'] = df['Difficulty Number'].astype('category')
 df['Split_feats']=df.Features.str.split(' · ')
-df_f=pd.get_dummies(df['Split_feats'].apply(pd.Series).stack()).sum(level=0)
+df_f=pd.get_dummies(df['Split_feats'].apply(pd.Series).stack()).groupby(level=0).sum()
+feats=df_f.sum(axis=0)
+feats_name=list(df_f)
+df=df.join(df_f)
 
 # Get basic information about the data
 df.info()
 df.describe()
 
-# Plot count data of Dogs and Trail Difficulty on Bar Graphs
+#Plot count data of Dogs and Trail Difficulty on Bar Graphs
 plt.rcParams["figure.figsize"] = [9, 5]
-
-ax = plt.GridSpec(2, 1)
+fig, axs = plt.subplots(nrows=2,sharex=True)
 ax.update(wspace=0.25, hspace=0.25)
+sns.countplot(y=df['Dogs'],ax=axs[0])
 
-ax1 = plt.subplot(ax[0, 0])
-sns.countplot(y=df['Dogs'])
-
-ax2 = plt.subplot(ax[1, 0])
 sns.countplot(y=df['Trail Difficulty'],
-              order=['EASY', 'EASY/INTERMEDIATE', 'INTERMEDIATE',
-                     'INTERMEDIATE/DIFFICULT', 'DIFFICULT'])
+               order=['EASY', 'EASY/INTERMEDIATE', 'INTERMEDIATE',
+                      'INTERMEDIATE/DIFFICULT', 'DIFFICULT'],ax=axs[1])
+fig.suptitle('Trail Count of Dog Status and Difficulty Ratings', fontsize=14)
+
 plt.show()
 
 # Plot count data of Features on Bar Graphs
 plt.rcParams["figure.figsize"] = [9, 9]
-ax.update(wspace=0.25, hspace=0.25)
+ax = plt.GridSpec(1, 1)
 my_colors = list(islice(cycle(['b', 'r', 'g', 'y', 'c', 'm']), None, len(df)))
-df['Feature1'].value_counts(dropna=True).plot.barh(color=my_colors)
-plt.xlabel('Count')
+ax = feats.plot.barh(color=my_colors)
+plt.xlabel('Trail Count')
 plt.ylabel('Features')
-plt.title('Count of Features')
+plt.title('Trail Count of Features')
 plt.show()
 
 # Plot count data of numeric columns on Histograms
 plt.rcParams["figure.figsize"] = [9, 9]
-df.hist()
+df[df.columns[~df.columns.isin(feats_name)]].hist()
 plt.show()
 
 # Plot Box Plot for Difficulty Number vs. Trail Rating
-plt.rcParams["figure.figsize"] = [9, 9]
 ax = plt.GridSpec(2, 2)
-
+plt.rcParams["figure.figsize"] = [9, 9]
 ax1 = plt.subplot(ax[0, 0])
 sns.boxplot(x='Difficulty Number', y='Trail Rating', data=df)
 
