@@ -62,6 +62,27 @@ df['Dogs and Features'] = df['Dogs and Features'].apply(lambda x: x[0].split()[0
 df['Dogs and Features'] = df['Dogs and Features'].replace("Unknown", np.nan)
 df = df.rename(columns={'Dogs and Features': 'Dogs'})
 
+# Splitting Features Contains into separate Columns
+all_features = ['Birding', 'Fall Colors', 'River/Creek', 'Views', 'Wildflowers', 'Spring',
+                  'Geological Significance', 'Swimming', 'Lake', 'Wildlife']
+for i in all_features:
+    df[i] = df['Features'].str.contains(i)
+
+# Replacing all Features NaN values with False 
+df['Birding'] = df['Birding'].fillna(False)
+df['Fall Colors'] = df['Fall Colors'].fillna(False)
+df['River/Creek'] = df['River/Creek'].fillna(False)
+df['Views'] = df['Views'].fillna(False)
+df['Wildflowers'] = df['Wildflowers'].fillna(False)
+df['Wildlife'] = df['Wildlife'].fillna(False)
+df['Spring'] = df['Spring'].fillna(False)
+df['Geological Significance'] = df['Geological Significance'].fillna(False)
+df['Swimming'] = df['Swimming'].fillna(False)
+df['Lake'] = df['Lake'].fillna(False)
+
+# Droping Features column 
+df.drop(columns='Features', inplace=True)
+
 # Showing Datatypes 
 df.dtypes
 
