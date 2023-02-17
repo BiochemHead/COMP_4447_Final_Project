@@ -45,6 +45,10 @@ Web scraping https://www.hikingproject.com from hiking trails in the state of Co
 - Dogs and Features
 - Stats Info.
 
+
+![onesheet copy](https://user-images.githubusercontent.com/71293836/219767598-f12965f7-505a-4722-a2f7-f4b420032888.jpg)
+
+
 # Data Cleaning:
 Data cleaning is identifying and correcting errors or inconsistencies in hike_project.pkl dataset to ensure that the data is accurate, complete, and consistent.
 
