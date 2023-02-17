@@ -10,7 +10,7 @@ import seaborn as sns
 from itertools import cycle, islice
 
 # Read the cleaned hiking dataset pickle file
-df_o = pd.read_pickle("../Clean python code/hike_project_cln_data.pkl")
+df_o = pd.read_pickle("../2. Clean python code/hike_project_cln_data.pkl")
 df = df_o.copy(deep=True)
 df['Difficulty Number'] = df['Difficulty Number'].astype('category')
 df['Split_feats']=df.Features.str.split(' · ')
