@@ -3,7 +3,8 @@ This repository contains the notebook, files, and code for the final project
 
 # Versions
 Python Version:
-- Python 3.
+- Python 3.x
+
 Packages used (with version):
 - matplotlib==
 - numpy==
