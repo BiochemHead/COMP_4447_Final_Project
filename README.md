@@ -1,6 +1,17 @@
 # COMP 4447 Final Project
 This repository contains the notebook, files, and code for the final project
 
+# Versions
+Python Version:
+- Python
+Packages used (with version):
+- matplotlib==
+- numpy==
+- pandas==
+- selenium==
+- seaborn==
+* also see requirements.txt
+
 # Should We Trust that Hiking Trail Rating?
 # Contributors:
 - Ahmed Al Ayoubi
