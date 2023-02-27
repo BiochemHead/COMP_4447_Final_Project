@@ -3,14 +3,15 @@ This repository contains the notebook, files, and code for the final project
 
 # Versions
 Python Version:
-- Python
+- Python 3.x
+
 Packages used (with version):
 - matplotlib==
 - numpy==
 - pandas==
 - selenium==
 - seaborn==
-* also see requirements.txt
+Note: also see requirements.txt
 
 # Should We Trust that Hiking Trail Rating?
 # Contributors:
