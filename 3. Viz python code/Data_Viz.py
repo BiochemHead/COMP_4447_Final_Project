@@ -10,7 +10,7 @@ import seaborn as sns
 from itertools import cycle, islice
 
 # Read the cleaned hiking dataset pickle file
-df = pd.read_pickle("../2. Clean python code/hike_project_cln_data.pkl")
+#df = pd.read_pickle("hike_project_cleaned.pkl")
 
 #Get basic information about the data
 df.info()
@@ -47,13 +47,15 @@ plt.show()
 plt.rcParams["figure.figsize"] = [9, 9]
 df.select_dtypes(include=['float64']).hist();
 
-# Plot Box Plot for Difficulty Number vs. Trail Rating
-plt.rcParams["figure.figsize"] = [6, 6]
+# Plot Box Plot for Trail Rating vs. Trail Difficulty and Dog Status
+plt.rcParams["figure.figsize"] = [6, 10]
 sns.set_style("whitegrid")
-g = sns.boxplot(x='Trail Difficulty', y='Overall Trail Rating',order=['EASY', 'EASY/INTERMEDIATE', 'INTERMEDIATE',
-                      'INTERMEDIATE/DIFFICULT', 'DIFFICULT'], data=df)
+fig, axs = plt.subplots(nrows=2)
+g = sns.boxplot(data=df, x='Trail Difficulty', y='Overall Trail Rating',order=['EASY', 'EASY/INTERMEDIATE', 'INTERMEDIATE',
+                      'INTERMEDIATE/DIFFICULT', 'DIFFICULT'], ax=axs[1])
+g1 = sns.boxplot(data=df, x='Dogs', y='Overall Trail Rating', order=['Leashed', 'Off-leash', 'No Dogs', 'Unknown'],ax=axs[0])
 g.tick_params(axis='x', rotation=90)
-plt.title('Box Plot of Trail Rating by Difficulty Level')
+fig.suptitle('Trail Rating  by Dog Status and Trail Difficulty', y=0.92,fontsize=14)
 plt.show()
 
 # Make a paired plot of float64/numeric columns to explore relationships and include histograms
