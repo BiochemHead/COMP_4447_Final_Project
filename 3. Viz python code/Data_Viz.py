@@ -10,7 +10,7 @@ import seaborn as sns
 from itertools import cycle, islice
 
 # Read the cleaned hiking dataset pickle file
-#df = pd.read_pickle("hike_project_cleaned.pkl")
+df = pd.read_pickle("../2. Clean python code/hike_project_cleaned.pkl")
 
 #Get basic information about the data
 df.info()
