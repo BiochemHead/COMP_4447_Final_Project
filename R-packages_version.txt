@@ -1,6 +1,6 @@
-dplyr==
-tidyr==
-stringr==
-leaps==
-tidyverse==
-reticulate==
+dplyr==1.1.0
+tidyr==1.3.0
+stringr==1.5.0
+leaps==3.1
+tidyverse==2.0.0
+reticulate==1.2.8
