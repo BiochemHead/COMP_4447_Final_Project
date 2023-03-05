@@ -11,7 +11,7 @@ R Version:
 Packages used (with version):
 
 - See requirements.txt for Python
-- See <text file of R libraries and versions>
+- See R-library_requirements.txt for R
 
 # Should We Trust that Hiking Trail Rating?
 # Contributors:
