@@ -3,13 +3,15 @@ This repository contains the notebook, files, and code for the final project
 
 # Versions
 Python Version:
-- Python 3.x
+- Python 3.9.12
 
-R version
+R Version:
+- 4.2.2
 
 Packages used (with version):
+
 See requirements.txt for Python
-See 
+See <text file of R libraries and versions>
 
 # Should We Trust that Hiking Trail Rating?
 # Contributors:
