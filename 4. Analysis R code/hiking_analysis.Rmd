@@ -1,0 +1,94 @@
+---
+title: "Untitled"
+author: "Harlan Kefalas"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(leaps)
+library(tidyverse)
+```
+
+
+```{r}
+library(reticulate)
+pd <-import("pandas")
+pickle_data <- pd$read_pickle("hike_project_data.pkl")
+```
+
+```{r}
+
+```
+
+
+```{r}
+pickle_data[c('Difficulty', 'extra')] <- str_split_fixed(pickle_data$`Trail Difficulty`, '\n', 2)
+pickle_data[c('List', 'Extract')] <- str_split_fixed(pickle_data$`User Rate Number`, ' ', 2)
+pickle_data[c('UserRating', 'TotUserRating')] <- str_split_fixed(pickle_data$Extract, ' ', 2)
+pickle_data[c('TotRating1', 'TotRating2', 'TotRating3')] <- str_split_fixed(pickle_data$TotUserRating, '', 3)
+pickle_data$Elev_Up <- gsub('[\',]', '',pickle_data$Elev_Up)
+pickle_data$Elev_Down <- gsub('[\',]', '',pickle_data$Elev_Down)
+pickle_data$`Highest Elevation` <- gsub('[\',]', '',pickle_data$`Highest Elevation`)
+pickle_data$`Lowest Elevation` <- gsub('[\',]', '',pickle_data$`Lowest Elevation`)
+pickle_data$`Average Grade` <- gsub('%', '',pickle_data$`Average Grade`)
+pickle_data$`Max Grade` <- gsub('%', '',pickle_data$`Max Grade`)
+
+```
+
+
+```{r}
+pickle_data <- select(pickle_data, -c("Trail Difficulty", "Trail Rating", "User Rate Number", "List", "extra", "Extract", "TotRating1", "TotRating3", "TotUserRating", "Stats Info.", "Dogs and Features"))
+
+```
+
+
+```{r}
+pickle_data$Difficulty_Factor <- as.factor(pickle_data$Difficulty)
+pickle_data$TrailType_Factor <- as.factor(pickle_data$'Trail Type')
+pickle_data$Elev_Up <- as.numeric(pickle_data$Elev_Up)
+pickle_data$Elev_Down <- as.numeric(pickle_data$Elev_Down)
+pickle_data$High_Elev <- as.numeric(pickle_data$`Highest Elevation`)
+pickle_data$Low_elev <- as.numeric(pickle_data$`Lowest Elevation`)
+pickle_data$`GradeAvg` <- as.numeric(pickle_data$`Average Grade`)
+pickle_data$`GradeMax` <- as.numeric(pickle_data$`Max Grade`)
+pickle_data$UserRating <- as.numeric(pickle_data$UserRating)
+pickle_data$TotRating2 <- as.numeric(pickle_data$TotRating2)
+pickle_data$TrailLength <- as.numeric(pickle_data$'Trail Length')
+
+```
+
+```{r}
+str(pickle_data)
+```
+
+```{r}
+summary(pickle_data)
+```
+
+```{r}
+model.one <- lm(UserRating ~ TrailType_Factor + Difficulty_Factor + High_Elev+Low_elev+GradeAvg+GradeMax+TrailLength+TotRating2, data=pickle_data)
+summary(model.one)
+
+```
+
+```{r}
+plot(model.one)
+```
+
+```{r}
+fmla <-as.formula("UserRating ~ TrailType_Factor + Difficulty_Factor + High_Elev+Low_elev+GradeAvg+GradeMax+TrailLength+TotRating2")
+x<-model.matrix(fmla, data=pickle_data)
+
+y<-pickle_data$UserRating
+```
+
+```{r}
+
+```
