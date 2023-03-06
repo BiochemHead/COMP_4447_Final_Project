@@ -76,7 +76,7 @@ Data cleaning typically involves several tasks, including:
 - Reformatting data
 
 # Visualizations:
-Insert types of visualizaitons and why. What can we get out of it. Distributions on each feature/variable. Plot of difficulty vs. user entered difficulty. Plotting different variables/features vs. average rating. Save more difficulty level. Distribution of ratings (use a heatmap and cluster using Seaborn). Try multple regression of features to see what might impact rating the most (not a predicite model, but a descriptive model).
+After extraction and cleaning, it is time for exploratory data analysis. Some basic output and visuals and explored below.
 
 ![Screen Shot 2023-02-17 at 13 07 09 PM](https://user-images.githubusercontent.com/71293836/219764865-41fdcd57-5eef-45f4-9b97-9ab82a037b21.png)
 
