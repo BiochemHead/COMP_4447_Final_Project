@@ -80,4 +80,19 @@ Insert types of visualizaitons and why. What can we get out of it. Distributions
 
 ![Screen Shot 2023-02-17 at 13 07 09 PM](https://user-images.githubusercontent.com/71293836/219764865-41fdcd57-5eef-45f4-9b97-9ab82a037b21.png)
 
+# Data Analysis in R
+
+Best subset linear regression completed. Plots of the summary for the model with no features offered the best predictability. 
+<img width="815" alt="Screenshot 2023-03-05 at 7 52 56 PM" src="https://user-images.githubusercontent.com/123426828/223002278-7040262d-b78b-4217-aeb9-fb0d2f14c987.png">
+
+The coeffecients for the model.
+<img width="787" alt="Screenshot 2023-03-05 at 7 53 42 PM" src="https://user-images.githubusercontent.com/123426828/223002302-e6eb4b36-ef18-4fb6-8bba-c18f32609199.png">
+
+For comparison, the best subset with all factors. 
+<img width="807" alt="Screenshot 2023-03-05 at 7 53 59 PM" src="https://user-images.githubusercontent.com/123426828/223002350-ce89b35f-a84e-45fa-82f1-b6014560a787.png">
+
+Basic linear regression shows not all factors are statiscally significant.
+
+<img width="620" alt="Screenshot 2023-03-05 at 7 56 38 PM" src="https://user-images.githubusercontent.com/123426828/223002470-82502bb4-be5d-4ba1-acb3-bb76192b89ba.png">
+
 
