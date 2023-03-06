@@ -40,7 +40,7 @@ It used packages like Selenium, MongoDB, Pandas, sklearn and other resources to 
 This seemed like a good start to try our hand at exploring ratings...until we ran into blocks in web scrapping AllTrails.com...and so our journey began.
 
 # Data Scraping
-Web scraping https://www.hikingproject.com from hiking trails in the state of Colorado. as stated above, 5,855 trails are listed and curated by staff or contributors. Using Selenium automation test tool, we scraped 3,363 hiking trails in Colorado filtered by the following Data attributes:
+Web scraping https://www.hikingproject.com from hiking trails in the state of Colorado. as stated above, 5,855 trails are listed and curated by staff or contributors. Using Selenium automation test tool, we scraped 4,903 hiking trails in Colorado filtered by the following Data attributes:
 
 - Trail Name
 - Trail Length
