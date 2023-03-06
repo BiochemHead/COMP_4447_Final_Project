@@ -78,7 +78,13 @@ Data cleaning typically involves several tasks, including:
 # Visualizations:
 After extraction and cleaning, it is time for exploratory data analysis. Some basic output and visuals and explored below.
 
+![output](https://user-images.githubusercontent.com/95116282/223018897-5555b23e-115b-4535-9a42-ca5032851ef9.png)
+
 ![Screen Shot 2023-02-17 at 13 07 09 PM](https://user-images.githubusercontent.com/71293836/219764865-41fdcd57-5eef-45f4-9b97-9ab82a037b21.png)
+
+![output3](https://user-images.githubusercontent.com/95116282/223019010-86ec6c9a-c42f-42d0-90c4-b47c2efb1f79.png)
+
+There are more visualization to be shown as well as some summary statistics and can be found in the Jupyter Notebook at this site.  The take home message is that it is not clear what the main contributing relationshipts between Overall Rating and Trail Characteristics are, but a multivariate approach will be more appropriate and explored in the next section.
 
 # Data Analysis in R
 
